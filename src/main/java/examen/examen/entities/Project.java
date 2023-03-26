@@ -1,5 +1,6 @@
 package examen.examen.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +26,8 @@ public class Project {
    @ManyToMany()
    private List<User> users;
 
-    @OneToMany(mappedBy = "project")
-    private List<Sprint> sprint;
+   @JsonIgnore
+   @OneToMany(mappedBy = "project",cascade = CascadeType.PERSIST)
+   private List<Sprint> sprints;
 
 }
